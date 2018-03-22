@@ -9,16 +9,12 @@
 }
 
 html {
-  /* Should not specific root font size in px since that'll disable user to change their font sizes, aka bad user experience */
+  /* Define what 1rem is, aka 10px if user keeps their default browser font size at 16px */
   font-size: 62.5%;
 }
 
 body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.7;
-  color: $color-grey-dark;
   padding: 3rem;
+  font-size: $default-font-size;
   box-sizing: border-box;
 }
