@@ -13,7 +13,7 @@
     left: 0;
     width: 100%;
     backface-visibility: hidden;
-    border-radius: 3px;
+    border-radius: $default-border-radius;
     overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
 
@@ -73,9 +73,9 @@
     color: $color-white;
     position: absolute;
     top: 12rem;
-    right: 2rem;
+    left: 8rem;
     text-align: right;
-    width: 60%;
+    width: 70%;
     z-index: 2;
   }
 
