@@ -1,0 +1,153 @@
+.navigation {
+
+  //we use the checkbox for toggle nav trick
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-white;
+    //make the button cover the background (6rem) below
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    z-index: 500;
+    box-shadow: 0 1rem 3rem rgba($color-black, .1);
+    // align the icon
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__background {
+    background-image: radial-gradient($color-primary-light, $color-primary-dark);
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    z-index: 200;
+    transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    //transform: scale(80);
+  }
+
+  &__nav {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1);
+
+    //hide the nav first
+    opacity: 0;
+    width: 0;
+  }
+
+  &__list {
+    //center the nav list
+    @include page-center;
+    list-style: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 300;
+      padding: 1rem 1.5rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      //create the folding effect
+      //make the background twice as big
+      background-size: 220%;
+      //so that we can use linear gradient effect, first half is transparent, second half is white
+      //when hover, move the background left 100% and only the white part shows
+      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+      transition: all .4s;
+
+      span {
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
+    }
+    
+    &:hover, 
+    &:active {
+      color: $color-primary;
+      //move background left 100%
+      background-position: 100%;
+      transform: translateX(1rem);
+    }
+  }
+
+  //FUNCTIONALITY
+  //when the checkbox is checked (aka label navi-toggle is clicked), expand the background
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+  //and show the navigation
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
+  }
+
+  //ICON
+  &__icon {
+    position: relative;
+    margin-top: 3.4rem;
+    &,
+    &::before,
+    &::after {
+      display: inline-block;
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all .2s;
+    }
+    &::before { top: -.8rem; }
+    &::after { top: .8rem; }
+  }
+
+  //when the button is hovered, animate the before and after line
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+
+  //when the checkbox is checked (aka, navigation is shown), select the adjacent sibling's (aka button) icon
+  &__checkbox:checked + &__button &__icon {
+    background: transparent;
+  }
+
+  &__checkbox:checked+&__button &__icon::before {
+    transform: rotate(135deg);
+    top: 0;
+  }
+
+  &__checkbox:checked+&__button &__icon::after {
+    transform: rotate(-135deg);
+    top: 0;
+  }
+}
