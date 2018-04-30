@@ -1,0 +1,58 @@
+.popup {
+  background-color: rgba($color-black, .8);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+
+  &__content {
+    @include page-center;
+    background-color: $color-white;
+    width: 75%;
+    box-shadow: 0 2rem 4rem rgba($color-black, .2);
+    border-radius: 3px;
+    //set parent to display as table
+    display: table;
+    overflow: hidden; //so that the image doesn't overflow the border-radius
+  }
+
+  &__left {
+    width: 33.33333%;
+    //when set display as table-cell, the browser will automatically give left
+    //and right side the same height
+    display: table-cell;
+  }
+  &__right {
+    width: 66.66667%;
+    display: table-cell;
+    //once an element's display is set to be table-cell, we can use
+    //vertical alignment to align content to the middle
+    vertical-align: middle;
+    padding: 4rem;
+  }
+
+  &__img {
+    display: block;
+    max-width: 100%;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    -moz-column-count: 2;
+    -moz-column-gap: 2rem;
+    -moz-column-rule: 1px solid $color-grey-light-2;
+    
+    column-count: 2;
+    column-gap: 2rem;
+    column-rule: 1px solid $color-grey-light-2;
+
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+}
