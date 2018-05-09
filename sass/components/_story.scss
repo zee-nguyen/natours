@@ -7,6 +7,15 @@
   border-radius: $default-border-radius;
   transform: skewX(-12deg);
 
+  @include responsive(tab-port) {
+    width: 100%;
+    padding: 4rem 4rem 4rem 7rem;
+  }
+
+  @include responsive(phone) {
+    transform: skewX(0);
+  }
+
   & > * {
     transform: skewX(12deg);
   }
@@ -23,6 +32,10 @@
     clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
     position: relative;
+
+    @include responsive(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
   }
 
   &__img {
@@ -47,7 +60,11 @@
   }
 
   &__text {
-
+    transform: skewX(12deg);
+    
+    @include responsive(phone) {
+      transform: skewX(0);
+    }
   }
 
   &:hover &__caption {

@@ -2,7 +2,6 @@
   &__group:not(:last-child) {
     margin-bottom: 2rem;
   }
-
   &__input {
     //input doesn't inherit font properties so we need to specify everything
     font-size: 1.5rem;
@@ -16,24 +15,21 @@
     width: 80%;
     display: block;
     transition: all .3s;
-
+    @include responsive(tab-port) {
+      width: 100%;
+    }
     &:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba($color-black, .1);
       border-bottom: 3px solid $color-primary;
-    }
-
-    //when the input is focused and its value is invalid (email or the input is empty, for ex)
+    } //when the input is focused and its value is invalid (email or the input is empty, for ex)
     &:focus:invalid {
       border-bottom: 3px solid $color-secondary-dark;
-    }
-
-    //This below currently only works in Safari & Chrome
+    } //This below currently only works in Safari & Chrome
     &::-webkit-input-placeholder {
       color: $color-grey-dark-2;
     }
   }
-
   &__label {
     font-size: 1.2rem;
     font-weight: 700;
@@ -41,33 +37,31 @@
     margin-left: 2rem;
     margin-top: .7rem;
     transition: all .3s;
-  }
-
-  //when the input's placeholder is shown (aka users haven't written anything in the input), select its adjacent sibling, which is the label
-  &__input:placeholder-shown + &__label {
+  } //when the input's placeholder is shown (aka users haven't written anything in the input), select its adjacent sibling, which is the label
+  &__input:placeholder-shown+&__label {
     //if we only set opacity: 0, the element is still there, it's just transparent - therefore, we use visibility hidden as well
     //however, visibility can't be animated, so we use opacity for the animation purpose
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
   }
-
   &__radio-group {
     width: 50%;
     float: left;
     margin-bottom: 2rem;
+    @include responsive(tab-port) {
+      width: 100%;
+      margin-bottom: 3rem;
+    }
   }
-
   &__radio-input {
     display: none;
   }
-
   &__radio-label {
     cursor: pointer;
     position: relative;
     padding-left: 5rem;
   }
-
   &__radio-button {
     display: inline-block;
     width: 3rem;
@@ -77,7 +71,6 @@
     position: absolute;
     left: 0;
     top: -4px;
-
     &::after {
       content: "";
       display: block;
@@ -92,10 +85,8 @@
       opacity: 0;
       transition: opacity .3s;
     }
-  }
-
-  //when the radio input is selected (aka checked), select its sibling's child (radio-button), specifically the after pseudo element
-  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+  } //when the radio input is selected (aka checked), select its sibling's child (radio-button), specifically the after pseudo element
+  &__radio-input:checked~&__radio-label &__radio-button::after {
     opacity: 1;
   }
 }
