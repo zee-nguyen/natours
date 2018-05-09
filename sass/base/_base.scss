@@ -10,11 +10,33 @@
 
 html {
   /* Define what 1rem is, aka 10px if user keeps their default browser font size at 16px */
-  font-size: 62.5%;
+  font-size: 62.5%; 
+
+  // no need to define size for phone since the style for tab-port (<900px) also applies for phone
+  // @include responsive(phone) {
+  //   font-size: 50%;
+  // }
+
+
+  @include responsive(tab-land) { //width < 600px?
+    font-size: 56.25%; //1rem = 9px; 9/16 = 56.25%;
+  }
+
+  @include responsive(tab-port) { //width < 900px?
+    font-size: 50%; //1rem = 8px; 8/16 = 50%
+  }
+
+  @include responsive(big-desktop) {
+    font-size: 75%; // 1rem = 12px; 12/16 = 75%;
+  }
 }
 
 body {
   padding: 3rem;
   font-size: $default-font-size;
   box-sizing: border-box;
+
+  @include responsive(tab-port) {
+    padding: 0;
+  }
 }
